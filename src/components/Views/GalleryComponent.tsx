@@ -2,7 +2,7 @@ import { View, Text, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import ImagesList from '../ImagesList';
-import useImages from '../APIs/hooks/useImages';
+import useImages from '../../APIs/hooks/useImages';
 
 
 
