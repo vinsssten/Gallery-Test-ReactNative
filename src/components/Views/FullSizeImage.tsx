@@ -6,24 +6,29 @@ import { FullSizeStyles } from '../../styles';
 import useImages from '../../APIs/hooks/useImages';
 import { RootState } from '../../APIs/store/store';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import useFavoritePhoto from '../../APIs/hooks/useFavoritePhoto';
+import useMemo from 'react';
 
 interface Props {
 }
 
 const FullSizeImage: FC<Props> = ({}) => {
     const [aspectRatio, setAspectRatio] = useState<number>(1);
-    const [isFavoriteState, setIsFavoriteState] = useState<boolean>(false);
     const id = useAppSelector((state: RootState) => state.app.imageId);
+    const favoriteList = useAppSelector(state => state.favorite.favoriteIdsList);
     
-    const { curPhoto, isLoadingPhoto, isFavorite, getPhotoById, favoritePhoto } = useImages();
+    const { curPhoto, isLoadingPhoto, getPhotoById } = useImages();
+    const { isFavorite, isFavoritePhoto, favoritePhoto } = useFavoritePhoto(id ?? undefined);
     const navigation = useNavigation();
     
     const windowWidth = Dimensions.get('window').width;
     
     useEffect(() => {
         if (id) {
+            console.log('open new full size');
             navigation.setOptions({title: `${id}.jpg`, tabBarVisible: false});
             getPhotoById(id);
+            isFavoritePhoto(id);
         }
     }, [id]);
 

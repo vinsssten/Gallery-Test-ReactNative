@@ -5,6 +5,7 @@ import { ThumbPhotoResponse, ThumbPhoto, FullSizePhoto } from '../models/Images'
 import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../App';
 import { addFavoritePhoto, removeFavoritePhoto } from '../store/actionCreators/favoriteActionCreators';
+import { setThumbsList } from '../store/actionCreators/appActionCreators';
 
 
 const api = createApi({
@@ -12,14 +13,12 @@ const api = createApi({
 })
 
 function useImages () {
-    const [thumbsList, setThumbsList] = useState<ThumbPhoto[]>([]);
+    const thumbsList = useAppSelector(state => state.app.thumbsList);
     const [isLoadingThumbs, setIsLoadingThumbs] = useState<boolean>(false);
 
     const [curPhoto, setCurPhoto] = useState<FullSizePhoto | null>(null);
     const [isLoadingPhoto, setIsLoadingPhoto] = useState<boolean>(true);
-    const [isFavoriteState, setIsFavoriteState] = useState<boolean>(false);
-
-    const favoriteList = useAppSelector(state => state.favorite.favoriteIdsList);
+    
     const dispatch = useAppDispatch();
 
     async function getThumbs () {
@@ -43,7 +42,7 @@ function useImages () {
             })
             
             setIsLoadingThumbs(true);
-            setThumbsList(thumbsList);
+            dispatch(setThumbsList(thumbsList));
             return imagesList;
         } catch (error) {
             setIsLoadingThumbs(true)
@@ -59,7 +58,6 @@ function useImages () {
             if (!responsePhoto.response) {
                 return
             } else {
-                console.log('Photo response received');
                 setCurPhoto({
                     uri: responsePhoto.response.urls.full,
                     width: responsePhoto.response.width,
@@ -71,36 +69,9 @@ function useImages () {
             console.log('Loading full size photo error', error);
         }
     }
-
-    function favoritePhoto (id: string | null) {
-        if (id) {
-            isFavoritePhoto(id);
-            if (!isFavoriteState) {
-                dispatch(addFavoritePhoto(id));
-                setIsFavoriteState(true)
-            } else {
-                dispatch(removeFavoritePhoto(id));
-                setIsFavoriteState(false);
-            }
-        }
-    }
-
-    function isFavoritePhoto (id: string | null): void {
-        if (id) {
-            for (let i = 0; i < favoriteList.length; i++) {
-                if (favoriteList[i] === id) {
-                    setIsFavoriteState(true);
-                    break
-                }
-            }
-            
-            setIsFavoriteState(false);
-        }
-        setIsFavoriteState(false);
-    }
             
 
-    return { thumbsList, isLoadingThumbs, curPhoto, isLoadingPhoto, isFavorite: isFavoriteState, getThumbs, getPhotoById, favoritePhoto, isFavoritePhoto }
+    return { thumbsList, isLoadingThumbs, curPhoto, isLoadingPhoto, getPhotoById, getThumbs }
 }
 
 export default useImages

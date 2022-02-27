@@ -10,7 +10,7 @@ interface FavoriteStorePayload {
 }
 
 const initialState: FavoriteState = {
-    favoriteIdsList: ['cK4r-RSz-RQ']
+    favoriteIdsList: []
 };
 
 
