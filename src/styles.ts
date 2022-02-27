@@ -24,7 +24,7 @@ export const MainContentStyles = StyleSheet.create({
 })
 
 export const ImagesStyles = StyleSheet.create({
-    image: {
+    thumbImage: {
         borderRadius: 5,
         margin: 5
     },
@@ -33,5 +33,19 @@ export const ImagesStyles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap'
+    },
+    
+})
+
+export const FullSizeStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    fullSizeImage: {
+        // width: '100%',
     }
 })

@@ -25,7 +25,10 @@ function RootNavigator () {
             <Stack.Screen name='Gallery' component={GalleryComponent} />
             <Stack.Screen name='Favorites' component={FavoriteComponent}/>
             <Stack.Group screenOptions={{presentation: 'modal'}}>
-                <Stack.Screen name='FullSizeModal' component={FullSizeImage}/>
+                <Stack.Screen 
+                    name='FullSizeModal' 
+                    component={FullSizeImage}
+                />
             </Stack.Group>
         </Stack.Navigator>
     ) 

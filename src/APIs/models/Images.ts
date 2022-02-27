@@ -3,9 +3,15 @@ export interface ThumbPhoto {
     url: string
 }
 
-export interface PhotoResponse {
+export interface ThumbPhotoResponse {
     id: string,
     urls: {
         thumb: string
     }
+}
+
+export interface FullSizePhoto {
+    uri: string,
+    width: number,
+    height: number,
 }

@@ -1,7 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { FC } from "react"
+import React, { FC, useEffect } from "react"
 import { Pressable, Image } from "react-native"
 import { ImagesStyles } from '../styles';
+import { useAppDispatch } from '../../App';
+import { setCurrentPhotoId, clearCurrentPhotoId } from '../APIs/store/actionCreators/appActionCreators';
 
 interface Props {
     id: string,
@@ -11,13 +13,19 @@ interface Props {
 
 const PressableThumb: FC<Props> = ({id, uri, size}) => {
     const { navigate } = useNavigation();
+    const dispatch = useAppDispatch();
+
+    function pressHandler () {
+        dispatch(setCurrentPhotoId(id));
+        navigate('FullSizeModal');
+    }
     
     return (
         <Pressable
-            onPress={() => navigate('FullSizeModal')}
+            onPress={ pressHandler }
             >
             <Image
-                style={Object.assign({ width: size, height: size }, ImagesStyles.image)}
+                style={Object.assign({ width: size, height: size }, ImagesStyles.thumbImage)}
                 source={{uri: uri}} />
         </Pressable>
     )
