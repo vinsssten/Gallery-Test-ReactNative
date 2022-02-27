@@ -10,15 +10,17 @@ interface FavoriteStorePayload {
 }
 
 const initialState: FavoriteState = {
-    favoriteIdsList: []
+    favoriteIdsList: ['cK4r-RSz-RQ']
 };
 
 
 const favoriteReducer: Reducer<FavoriteState, PayloadAction<FavoriteStorePayload>> = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_FAVORITE': 
+            console.log('add to favorite')
             return {...state, favoriteIdsList: [...state.favoriteIdsList, action.payload.id]};
-        case 'DELETE_FAVORITE_BY_ID':
+        case 'REMOVE_FAVORITE':
+            console.log('remove from favorite')
             const list: string[] = state.favoriteIdsList.slice();
             list.forEach((id, index) => {
                 if (id === action.payload.id) {

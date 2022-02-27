@@ -3,6 +3,8 @@ import nodeFetch from 'node-fetch'
 import { ApiResponse } from 'unsplash-js/dist/helpers/response';
 import { ThumbPhotoResponse, ThumbPhoto, FullSizePhoto } from '../models/Images';
 import { useEffect, useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../App';
+import { addFavoritePhoto, removeFavoritePhoto } from '../store/actionCreators/favoriteActionCreators';
 
 
 const api = createApi({
@@ -15,6 +17,10 @@ function useImages () {
 
     const [curPhoto, setCurPhoto] = useState<FullSizePhoto | null>(null);
     const [isLoadingPhoto, setIsLoadingPhoto] = useState<boolean>(true);
+    const [isFavoriteState, setIsFavoriteState] = useState<boolean>(false);
+
+    const favoriteList = useAppSelector(state => state.favorite.favoriteIdsList);
+    const dispatch = useAppDispatch();
 
     async function getThumbs () {
         console.log('loading thumbs')
@@ -54,7 +60,6 @@ function useImages () {
                 return
             } else {
                 console.log('Photo response received');
-                console.log(responsePhoto);
                 setCurPhoto({
                     uri: responsePhoto.response.urls.full,
                     width: responsePhoto.response.width,
@@ -66,9 +71,36 @@ function useImages () {
             console.log('Loading full size photo error', error);
         }
     }
+
+    function favoritePhoto (id: string | null) {
+        if (id) {
+            isFavoritePhoto(id);
+            if (!isFavoriteState) {
+                dispatch(addFavoritePhoto(id));
+                setIsFavoriteState(true)
+            } else {
+                dispatch(removeFavoritePhoto(id));
+                setIsFavoriteState(false);
+            }
+        }
+    }
+
+    function isFavoritePhoto (id: string | null): void {
+        if (id) {
+            for (let i = 0; i < favoriteList.length; i++) {
+                if (favoriteList[i] === id) {
+                    setIsFavoriteState(true);
+                    break
+                }
+            }
+            
+            setIsFavoriteState(false);
+        }
+        setIsFavoriteState(false);
+    }
             
 
-    return { thumbsList, isLoadingThumbs, curPhoto, isLoadingPhoto, getThumbs, getPhotoById }
+    return { thumbsList, isLoadingThumbs, curPhoto, isLoadingPhoto, isFavorite: isFavoriteState, getThumbs, getPhotoById, favoritePhoto, isFavoritePhoto }
 }
 
 export default useImages

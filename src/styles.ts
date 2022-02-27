@@ -38,14 +38,34 @@ export const ImagesStyles = StyleSheet.create({
 })
 
 export const FullSizeStyles = StyleSheet.create({
-    container: {
+    mainContainer: {
         flex: 1,
+    },
+    imageContainer: {
+        flex: 6,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width: '100%'
+    },
+    buttonsContainer: {
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column'
+
     },
     fullSizeImage: {
         // width: '100%',
+    },
+    button: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 15,
+        backgroundColor: 'white',
+        borderColor: '#d3d3d3',
+        borderWidth: 1
     }
+
 })
