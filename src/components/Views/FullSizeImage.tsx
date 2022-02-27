@@ -7,12 +7,8 @@ import useImages from '../../APIs/hooks/useImages';
 import { RootState } from '../../APIs/store/store';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import useFavoritePhoto from '../../APIs/hooks/useFavoritePhoto';
-import useMemo from 'react';
 
-interface Props {
-}
-
-const FullSizeImage: FC<Props> = () => {
+const FullSizeImage: FC = () => {
     const [aspectRatio, setAspectRatio] = useState<number>(1);
     const id = useAppSelector((state: RootState) => state.app.imageId);
     
@@ -64,14 +60,20 @@ const FullSizeImage: FC<Props> = () => {
                 <TouchableOpacity
                     onPress={() => favoritePhoto(id)}>
                     <View 
-                        style={Object.assign({borderTopStartRadius: 20}, FullSizeStyles.button)}>
+                        style={Object.assign({
+                                borderTopStartRadius: 20,
+                                borderTopEndRadius: 20
+                        }, FullSizeStyles.button)}>
                         <Text>{!isFavorite ? 'Add to favorite ❤' : 'Remove from favorite 💔'}</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={deletePhotoHandler}>
                     <View 
-                        style={Object.assign({borderBottomEndRadius: 5}, FullSizeStyles.button)}>
+                        style={Object.assign({
+                                borderEndStartRadius: 20,
+                                borderEndEndRadius: 20},
+                             FullSizeStyles.button)}>
                         <Text>Delete image from list 🗑</Text>
                     </View>
                 </TouchableOpacity>

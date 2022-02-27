@@ -11,7 +11,8 @@ interface Props {
 }
 
 const ImagesList: FC<Props> = ({thumbsList}) => {
-    const size = Dimensions.get('window').width / 3 - 10;
+    const numbPicsInRow = 3
+    const size = Dimensions.get('window').width / numbPicsInRow - 10;
 
     return (
         <View style={ImagesStyles.container}>
