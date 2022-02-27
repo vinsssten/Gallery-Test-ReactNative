@@ -16,4 +16,4 @@ For start dev-server.
 
 ## Download apk
 
-You can download apk build from "PLACEHOLDER" 
+You can download apk build here https://disk.yandex.ru/d/pYJddprk5jcztw
