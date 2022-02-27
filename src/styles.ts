@@ -28,6 +28,12 @@ export const ImagesStyles = StyleSheet.create({
         borderRadius: 5,
         margin: 5
     },
+    favoriteFlag: {
+        fontSize: 18,
+        position: 'absolute',
+        marginLeft: '10%',
+        marginTop: '70%',
+    },
     container: {
         width: '100%',
         display: 'flex',

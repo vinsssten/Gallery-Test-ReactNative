@@ -1,9 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { FC, useEffect } from "react"
-import { Pressable, Image } from "react-native"
+import { Pressable, Image, Text } from "react-native"
 import { ImagesStyles } from '../styles';
 import { useAppDispatch } from '../../App';
 import { setCurrentPhotoId, clearCurrentPhotoId } from '../APIs/store/actionCreators/appActionCreators';
+import useFavoritePhoto from '../APIs/hooks/useFavoritePhoto';
 
 interface Props {
     id: string,
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const PressableThumb: FC<Props> = ({id, uri, size}) => {
+    const { isFavorite } = useFavoritePhoto(id);
     const { navigate } = useNavigation();
     const dispatch = useAppDispatch();
 
@@ -26,7 +28,9 @@ const PressableThumb: FC<Props> = ({id, uri, size}) => {
             >
             <Image
                 style={Object.assign({ width: size, height: size }, ImagesStyles.thumbImage)}
-                source={{uri: uri}} />
+                source={{uri: uri}} 
+            />
+            <Text style={ImagesStyles.favoriteFlag}>{isFavorite ? '❤' : ''}</Text>
         </Pressable>
     )
     
