@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../App';
 
 export default function FavoriteComponent() {
     const { thumbsList } = useImages();
-    const favoriteIdsList = useAppSelector(state => state.favorite.favoriteIdsList)
+    const favoriteIdsList = useAppSelector(state => state.favorite.favoriteIdsList);
     const { isFavoritePhotoWithoutUpdate } = useFavoritePhoto();
     const [favoriteThumbs, setFavoriteThumbs] = useState<ThumbPhoto[]>([]);
 
@@ -16,19 +16,17 @@ export default function FavoriteComponent() {
         if (favoriteList) {
             setFavoriteThumbs(favoriteList);
         }
-    }, [thumbsList, favoriteIdsList])
+    }, [thumbsList, favoriteIdsList]);
 
-    function generateFavoriteList (thumbsListL: typeof thumbsList) {
-        const favoriteList: typeof thumbsListL = [] 
-        thumbsListL.forEach((item) => {
+    function generateFavoriteList(thumbsListL: typeof thumbsList) {
+        const favoriteList: typeof thumbsListL = [];
+        thumbsListL.forEach(item => {
             if (isFavoritePhotoWithoutUpdate(item.id)) {
                 favoriteList.push(item);
             }
-        })
+        });
         return favoriteList;
     }
 
-    return (
-        <ImagesList thumbsList={favoriteThumbs} />
-    )
+    return <ImagesList thumbsList={favoriteThumbs} />;
 }

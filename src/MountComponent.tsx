@@ -10,11 +10,11 @@ import { MainViewStyles } from './styles';
 const Tab = createBottomTabNavigator();
 
 export default function MountComponent() {
-	return (
-		<Provider store={store}>
-			<SafeAreaView style={MainViewStyles.container}>
-				<Navigation />
-			</SafeAreaView>
-		</Provider>
-	)
+    return (
+        <Provider store={store}>
+            <SafeAreaView style={MainViewStyles.container}>
+                <Navigation />
+            </SafeAreaView>
+        </Provider>
+    );
 }

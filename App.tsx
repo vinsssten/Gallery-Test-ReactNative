@@ -7,7 +7,5 @@ export const useAppSelector = useSelector as TypedUseSelectorHook<RootState>;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export default function App() {
-	return (
-		<MountComponent />
-	);
+    return <MountComponent />;
 }

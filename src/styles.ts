@@ -5,28 +5,28 @@ export const MainViewStyles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         backgroundColor: '#E5E5E5',
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-    }
-})
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    },
+});
 
 export const HeaderStyles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
-        backgroundColor: '#790598'
-    }
-})
+        backgroundColor: '#790598',
+    },
+});
 
 export const MainContentStyles = StyleSheet.create({
     container: {
         flex: 10,
-    }
-})
+    },
+});
 
 export const ImagesStyles = StyleSheet.create({
     thumbImage: {
         borderRadius: 5,
-        margin: 5
+        margin: 5,
     },
     favoriteFlag: {
         fontSize: 18,
@@ -38,10 +38,9 @@ export const ImagesStyles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
-    
-})
+});
 
 export const FullSizeStyles = StyleSheet.create({
     mainContainer: {
@@ -53,13 +52,12 @@ export const FullSizeStyles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100%'
+        width: '100%',
     },
     buttonsContainer: {
         flex: 1,
         display: 'flex',
-        flexDirection: 'column'
-
+        flexDirection: 'column',
     },
     fullSizeImage: {
         // width: '100%',
@@ -71,7 +69,6 @@ export const FullSizeStyles = StyleSheet.create({
         padding: 15,
         backgroundColor: 'white',
         borderColor: '#d3d3d3',
-        borderWidth: 1
-    }
-
-})
+        borderWidth: 1,
+    },
+});

@@ -1,17 +1,17 @@
 export interface ThumbPhoto {
-    id: string,
-    url: string
+    id: string;
+    url: string;
 }
 
 export interface ThumbPhotoResponse {
-    id: string,
+    id: string;
     urls: {
-        thumb: string
-    }
+        thumb: string;
+    };
 }
 
 export interface FullSizePhoto {
-    uri: string,
-    width: number,
-    height: number,
+    uri: string;
+    width: number;
+    height: number;
 }

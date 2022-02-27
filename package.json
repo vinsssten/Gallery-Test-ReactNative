@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "prettier": "npx prettier \"./**/*.{js,ts,jsx,tsx,scss,css}\" --write -u"
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.5",
