@@ -12,3 +12,7 @@ export const clearCurrentPhotoId = () => {
 export const setThumbsList = (thumbsList: ThumbPhoto[]) => {
     return {type: 'SET_THUMBS_LIST', payload: {thumbsList: thumbsList}}
 }
+
+export const removePhotoFromThumbs = (id: string) => {
+    return {type: 'REMOVE_PHOTO_FROM_THUMBS', payload: {imageId: id}}
+}

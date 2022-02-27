@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import GalleryComponent from '../Views/GalleryComponent';
 import FavoriteComponent from '../Views/FavoriteComponent';
 import FullSizeImage from '../Views/FullSizeImage';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -39,8 +40,30 @@ const BottomTab = createBottomTabNavigator();
 function BottomTabNavigator () {
     return (
         <BottomTab.Navigator>
-            <BottomTab.Screen name='Gallery' component={GalleryComponent}/>
-            <BottomTab.Screen name='Favorites' component={FavoriteComponent}/>
+            <BottomTab.Screen name='Gallery' component={GalleryComponent}
+                options={{
+                    tabBarIcon: ({ color }) => <MaterialIcon name="photo-library" color={color} />, 
+                }}
+                />
+            <BottomTab.Screen name='Favorites' component={FavoriteComponent} 
+                options={{
+                    tabBarIcon: ({ color }) => <FontAwesome name="heart" color={color} />, 
+                }}
+                />
         </BottomTab.Navigator>
     )
+}
+
+function MaterialIcon(props: {
+    name: React.ComponentProps<typeof MaterialIcons>['name'];
+    color: string;
+}) {
+    return <MaterialIcons size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+
+function FontAwesomeIcon(props: {
+    name: React.ComponentProps<typeof FontAwesome>['name'];
+    color: string;
+}) {
+    return <FontAwesome size={50} style={{ marginBottom: -3 }} {...props} />;
 }

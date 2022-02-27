@@ -13,10 +13,6 @@ function useFavoritePhoto (idArg?: string) {
         }
     }, [favoriteList]);
 
-    useEffect(() => {
-        console.log('favorite state update', isFavoriteState);
-    }, [isFavoriteState])
-
     function favoritePhoto (id: string | null) {
         if (id) {
             isFavoritePhoto(id);

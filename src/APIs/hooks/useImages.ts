@@ -5,7 +5,7 @@ import { ThumbPhotoResponse, ThumbPhoto, FullSizePhoto } from '../models/Images'
 import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../App';
 import { addFavoritePhoto, removeFavoritePhoto } from '../store/actionCreators/favoriteActionCreators';
-import { setThumbsList } from '../store/actionCreators/appActionCreators';
+import { setThumbsList, removePhotoFromThumbs } from '../store/actionCreators/appActionCreators';
 
 
 const api = createApi({
@@ -69,9 +69,15 @@ function useImages () {
             console.log('Loading full size photo error', error);
         }
     }
+
+    function deletePhotoFromThumbs (id: string | null) {
+        if (id) {
+            dispatch(removePhotoFromThumbs(id))
+        }
+    }
             
 
-    return { thumbsList, isLoadingThumbs, curPhoto, isLoadingPhoto, getPhotoById, getThumbs }
+    return { thumbsList, isLoadingThumbs, curPhoto, isLoadingPhoto, getPhotoById, getThumbs, deletePhotoFromThumbs }
 }
 
 export default useImages

@@ -24,7 +24,15 @@ const appReducer: Reducer<AppState, PayloadAction<AppPayload>> = (state = initia
         case 'CLEAR_CURRENT_IMAGE_ID':
             return { ...state, imageId: null }
         case 'SET_THUMBS_LIST': 
-            return { ...state, thumbsList: action.payload.thumbsList ?? state.thumbsList }
+            return { ...state, thumbsList: action.payload.thumbsList ?? state.thumbsList };
+        case 'REMOVE_PHOTO_FROM_THUMBS': 
+            const list = state.thumbsList.slice();
+            list.forEach((item, index) => {
+                if (item.id === action.payload.imageId) {
+                    list.splice(index, 1);
+                }
+            })
+            return { ...state, thumbsList: list};
         default: 
             return { ...state }
     }
